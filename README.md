@@ -1,2 +1,3 @@
 # cmdargs
-Command line argument parser for Rust
+
+Command line argument parser for Rust.

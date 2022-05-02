@@ -1,0 +1,13 @@
+[package]
+name = "cmdargs"
+version = "0.1.0"
+edition = "2021"
+
+authors = ["Everaldo Canuto <everaldo.canuto@gmail.com>"]
+license = "Unlicense"
+homepage = "https://github.com/puccinia/cmdargs.git"
+repository = "https://github.com/puccinia/cmdargs.git"
+description = "Command line argument parser for Rust"
+
+[dependencies]
+cmdargs-macros = { path = "../cmdargs-macros" }
