@@ -10,4 +10,4 @@ repository = "https://github.com/puccinia/cmdargs.git"
 description = "Command line argument parser for Rust"
 
 [dependencies]
-cmdargs-macros = { path = "../cmdargs-macros" }
+cmdargs-macros = { version = "0.1.0", path = "../cmdargs-macros" }
