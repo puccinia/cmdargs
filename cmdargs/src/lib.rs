@@ -21,14 +21,20 @@ impl Parser {
         }
     }
 
-    pub fn program(mut self, program: String) -> Self {
-        self.program = program;
-        self
+    pub fn program(&mut self) -> &String {
+        &self.program
     }
 
-    pub fn version(mut self, version: String) -> Self {
+    pub fn set_program(&mut self, program: String) {
+        self.program = program;
+    }
+
+    pub fn version(&mut self) -> &String {
+        &self.version
+    }
+
+    pub fn set_version(&mut self, version: String) {
         self.version = version;
-        self
     }
 
     pub fn parse(&self) {}
