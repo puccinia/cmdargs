@@ -7,6 +7,8 @@
 
 pub use cmdargs_macros::*;
 
+use std::process;
+
 #[derive(Clone)]
 pub struct Parser {
     pub program: &'static str,
@@ -35,6 +37,11 @@ impl Parser {
 
     pub fn set_version(&mut self, version: &'static str) {
         self.version = version;
+    }
+
+    pub fn print_version(&self) {
+        println!("{} v{}", self.program, self.version);
+        process::exit(0);
     }
 
     pub fn parse(&self) {}
