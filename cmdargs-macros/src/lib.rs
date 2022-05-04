@@ -9,21 +9,18 @@ use proc_macro::TokenStream;
 
 #[proc_macro]
 pub fn parser_from_str(_input: TokenStream) -> TokenStream {
-    let program = r#"env!("CARGO_BIN_NAME").to_string()"#;
-    let version = r#"env!("CARGO_PKG_VERSION").to_string()"#;
+    let program = r#"env!("CARGO_BIN_NAME")"#;
+    let version = r#"env!("CARGO_PKG_VERSION")"#;
 
     let output = format!(
         r#"{{
             let mut parser = cmdargs::Parser::new();
-            parser.program = {};
-            parser.version = {};
+            parser.set_program({});
+            parser.set_version({});
             parser
         }}"#,
         program, version,
     );
 
     output.parse().unwrap()
-    // eprintln!("{}", result);
-    // TokenStream::from_str("")
-    // return TokenStream::new();
 }

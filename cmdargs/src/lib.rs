@@ -9,31 +9,31 @@ pub use cmdargs_macros::*;
 
 #[derive(Clone)]
 pub struct Parser {
-    pub program: String,
-    pub version: String,
+    pub program: &'static str,
+    pub version: &'static str,
 }
 
 impl Parser {
     pub fn new() -> Self {
         Parser {
-            program: String::new(),
-            version: String::new(),
+            program: "",
+            version: "",
         }
     }
 
-    pub fn program(&mut self) -> &String {
+    pub fn program(&mut self) -> &str {
         &self.program
     }
 
-    pub fn set_program(&mut self, program: String) {
+    pub fn set_program(&mut self, program: &'static str) {
         self.program = program;
     }
 
-    pub fn version(&mut self) -> &String {
+    pub fn version(&mut self) -> &str {
         &self.version
     }
 
-    pub fn set_version(&mut self, version: String) {
+    pub fn set_version(&mut self, version: &'static str) {
         self.version = version;
     }
 
