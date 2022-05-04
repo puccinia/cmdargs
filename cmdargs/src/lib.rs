@@ -7,7 +7,7 @@
 
 pub use cmdargs_macros::*;
 
-use std::process;
+use std::{env, process};
 
 #[derive(Clone)]
 pub struct Parser {
@@ -44,5 +44,17 @@ impl Parser {
         process::exit(0);
     }
 
-    pub fn parse(&self) {}
+    pub fn parse_from(&self, args: impl Iterator<Item = String>) {
+        for item in args {
+            match item.as_str() {
+                "-V" | "--version" => self.print_version(),
+                _ => {
+                    println!("{}", item)
+                }
+            }
+        }
+    }
+    pub fn parse(&self) {
+        self.parse_from(env::args().skip(1));
+    }
 }
