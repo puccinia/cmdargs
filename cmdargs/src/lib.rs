@@ -13,6 +13,7 @@ use std::{env, process};
 pub struct Parser {
     pub program: &'static str,
     pub version: &'static str,
+    pub usage: String,
 }
 
 impl Parser {
@@ -20,6 +21,7 @@ impl Parser {
         Parser {
             program: "",
             version: "",
+            usage: String::new(),
         }
     }
 
@@ -39,18 +41,34 @@ impl Parser {
         self.version = version;
     }
 
+    pub fn usage(&mut self) -> &String {
+        &self.usage
+    }
+
+    pub fn set_usage(&mut self, usage: String) {
+        self.usage = usage;
+    }
+
     pub fn print_version(&self) {
         println!("{} v{}", self.program, self.version);
+        process::exit(0);
+    }
+
+    pub fn print_usage(&self) {
+        if self.usage.is_empty() {
+            println!("Usage: {} [options]", self.program);
+        } else {
+            println!("{}", self.usage);
+        }
         process::exit(0);
     }
 
     pub fn parse_from(&self, args: impl Iterator<Item = String>) {
         for item in args {
             match item.as_str() {
+                "-h" | "--help" => self.print_usage(),
                 "-V" | "--version" => self.print_version(),
-                _ => {
-                    println!("{}", item)
-                }
+                _ => println!("{}", item),
             }
         }
     }
